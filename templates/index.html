@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Voice Notification System</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; }
+        header { background: #051d3e; color: white; padding: 15px; text-align: center; }
+        .container { padding: 20px; text-align: center; }
+        .btn { padding: 10px 20px; background: #5a748f; color: white; border-radius: 5px; cursor: pointer; }
+        .ai-bot-container { display: flex; align-items: center; background-color: #4c87af; color: white; padding: 10px; border-radius: 5px; margin-top: 20px; }
+        .ai-bot-container img { width: 50px; height: 50px; border-radius: 50%; margin-right: 10px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>AI-Powered Voice Notification System</h1>
+    </header>
+    <div class="container" id="home">
+        <h2>Real-time AI-driven voice alerts</h2>
+        <p>Stay informed with instant voice notifications.</p>
+        <button class="btn" onclick="fetchNotifications()">Check Notifications</button>
+        <div class="ai-bot-container" id="notification-area">
+            <img src="Voiceai.jpg" alt="AI Voice Bot">
+            <p id="voice-message"><strong>AI Voice Bot:</strong> Awaiting notifications...</p>
+        </div>
+    </div>
+
+    <script>
+        async function fetchNotifications() {
+            const response = await fetch('/get-notifications');
+            const data = await response.json();
+            const messageElement = document.getElementById('voice-message');
+            messageElement.innerHTML = `<strong>AI Voice Bot:</strong> ${data.message}`;
+        }
+    </script>
+</body>
+</html>
